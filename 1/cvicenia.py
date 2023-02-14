@@ -1,3 +1,4 @@
+class EmptyError(Exception): pass
 #1
 from prednaska import Stack
 s = Stack()
@@ -24,7 +25,36 @@ def pocet_cisel(sta):
             pocet += 1
     return pocet
 
-s = Stack((5, '7', 3.14, [8]))
-print(pocet_cisel(s))
-#5
+s = Stack("py")
 
+#5
+def pocet_prvkov(zasobnik):
+    pocet = 0
+    kopia = Stack()                   # pomocný zásobník
+    while not zasobnik.is_empty():
+        kopia.push(zasobnik.pop())
+        pocet += 1
+    while not kopia.is_empty():       # vráti pôvodný obsah zásobníka
+        zasobnik.push(kopia.pop())
+    return pocet
+def druhy(stack):
+    pocet_gut = pocet_prvkov(stack)
+    kopia = Stack()
+    pocet = 0
+    vysledok = None
+    while not stack.is_empty():
+        pocet += 1
+        if pocet_gut - 1 == pocet:
+            vysledok = stack.pop()
+        else:
+            kopia.push(stack.pop())
+
+    while not kopia.is_empty():  # vráti pôvodný obsah zásobníka
+        stack.push(kopia.pop())
+    if vysledok is None:
+        raise EmptyError
+    else:
+        return vysledok
+#6
+def prevrat(stack):
+    
