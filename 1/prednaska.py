@@ -50,3 +50,5 @@ def pocitaj(vyraz):
         else:
             s.push(int(prvok))
     return s.pop()
+
+
